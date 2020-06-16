@@ -1,4 +1,5 @@
 let container = document.querySelector(".container");
+const circleColors = ["red", "#5fd35f", "blue", "#c312c3", "#a256a2", "#59ebdd"];
 
 function createCircles(numberOfCircles, left, top) {
     for (let i = 0; i < numberOfCircles; i++) {
@@ -13,7 +14,6 @@ function createCircles(numberOfCircles, left, top) {
     }
 }
 
-const circleColors = ["red", "#5fd35f", "blue", "#c312c3", "#a256a2", "#59ebdd"]
 
 function colorCircles() {
     
@@ -22,6 +22,15 @@ function colorCircles() {
     let circles = document.querySelectorAll(".circle");
     circles.forEach(circle => {
         circle.style.background = circleColors[randomCircleColorIndex];
+    });
+}
+
+function animateCircles() {
+    let circles = document.querySelectorAll(".circle");
+
+    circles.forEach(circle => {
+        circle.style.left = Math.round(Math.random() * (window.innerWidth + 200) - 200) + "px";
+        circle.style.top = Math.round(Math.random() * (window.innerHeight + 200) - 200) + "px";
     });
 }
 
@@ -50,34 +59,18 @@ function colorCircles() {
 //     createCircles(40, xPosition, yPosition);
 // }
 
-function animateCircles() {
-    let circles = document.querySelectorAll(".circle");
-
-    circles.forEach(circle => {
-        circle.style.left = Math.round(Math.random() * (window.innerWidth + 200) - 200) + "px";
-        circle.style.top = Math.round(Math.random() * (window.innerHeight + 200) - 200) + "px";
-    });
-}
-
-
-
-
-
-
-
 
 function init() {
     createCircles(60);
-    animateCircles()
 
     setInterval(() => {
         animateCircles()
     }, 3000);
     // animateCircles(40);
-
-    setInterval(() => {
-        colorCircles()
-    }, 15000);
 }
 
 window.onload = init;
+
+setInterval(() => {
+    colorCircles()
+}, 15000);
